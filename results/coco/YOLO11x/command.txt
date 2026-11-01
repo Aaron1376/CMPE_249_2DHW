@@ -1,0 +1,1 @@
+python src/run_eval.py --config configs/experiment.yaml --dataset coco --model YOLO11x

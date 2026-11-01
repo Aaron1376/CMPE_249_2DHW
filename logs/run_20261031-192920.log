@@ -1,0 +1,292 @@
+== Track A local run 20261031-192920  config=tests/smoke_config.yaml  steps=['test', 'prepare', 'eval', 'analyze']  models=['YOLO11l', 'RT-DETR-L', 'RT-DETR-L-dec4']  datasets=['coco', 'kitti']
+
+$ C:\Users\Aaron\Documents\CS249\det-track-a-kitti\.venv\Scripts\python.exe -m pytest -q tests/test_prepare_kitti.py
+.......                                                                  [100%]
+7 passed in 0.44s
+
+$ C:\Users\Aaron\Documents\CS249\det-track-a-kitti\.venv\Scripts\python.exe tests/make_smoke_data.py
+Creating new Ultralytics Settings v0.0.8 file  
+View Ultralytics Settings with 'yolo settings' or at 'C:\Users\Aaron\AppData\Roaming\Ultralytics\settings.json'
+Update Settings with 'yolo settings key=value', i.e. 'yolo settings runs_dir=path/to/dir'. For help see https://docs.ultralytics.com/usage/settings
+[KDownloading https://github.com/ultralytics/assets/releases/download/v8.4.0/rtdetr-l.pt to 'rtdetr-l.pt': 0% ──────────── 194.9KB/63.4MB 1.8MB/s 0.1s<36.0s[KDownloading https://github.com/ultralytics/assets/releases/download/v8.4.0/rtdetr-l.pt to 'rtdetr-l.pt': 7% ╸─────────── 4.9/63.4MB 46.3MB/s 0.2s<1.3s[KDownloading https://github.com/ultralytics/assets/releases/download/v8.4.0/rtdetr-l.pt to 'rtdetr-l.pt': 15% ━╸────────── 10.1/63.4MB 52.5MB/s 0.3s<1.0s[KDownloading https://github.com/ultralytics/assets/releases/download/v8.4.0/rtdetr-l.pt to 'rtdetr-l.pt': 28% ━━━───────── 18.3/63.4MB 79.3MB/s 0.4s<0.6s[KDownloading https://github.com/ultralytics/assets/releases/download/v8.4.0/rtdetr-l.pt to 'rtdetr-l.pt': 32% ━━━╸──────── 20.4/63.4MB 20.9MB/s 0.5s<2.1s[KDownloading https://github.com/ultralytics/assets/releases/download/v8.4.0/rtdetr-l.pt to 'rtdetr-l.pt': 34% ━━━━──────── 21.8/63.4MB 13.7MB/s 0.6s<3.0s[KDownloading https://github.com/ultralytics/assets/releases/download/v8.4.0/rtdetr-l.pt to 'rtdetr-l.pt': 39% ━━━━╸─────── 25.2/63.4MB 34.5MB/s 0.7s<1.1s[KDownloading https://github.com/ultralytics/assets/releases/download/v8.4.0/rtdetr-l.pt to 'rtdetr-l.pt': 47% ━━━━━╸────── 29.9/63.4MB 44.9MB/s 0.8s<0.7s[KDownloading https://github.com/ultralytics/assets/releases/download/v8.4.0/rtdetr-l.pt to 'rtdetr-l.pt': 47% ━━━━━╸────── 30.0/63.4MB 193.2KB/s 0.9s<2:57[KDownloading https://github.com/ultralytics/assets/releases/download/v8.4.0/rtdetr-l.pt to 'rtdetr-l.pt': 58% ━━━━━━━───── 37.2/63.4MB 70.8MB/s 1.0s<0.4s[KDownloading https://github.com/ultralytics/assets/releases/download/v8.4.0/rtdetr-l.pt to 'rtdetr-l.pt': 69% ━━━━━━━━──── 44.1/63.4MB 68.9MB/s 1.1s<0.3s[KDownloading https://github.com/ultralytics/assets/releases/download/v8.4.0/rtdetr-l.pt to 'rtdetr-l.pt': 78% ━━━━━━━━━─── 50.0/63.4MB 28.1MB/s 1.3s<0.5s[KDownloading https://github.com/ultralytics/assets/releases/download/v8.4.0/rtdetr-l.pt to 'rtdetr-l.pt': 90% ━━━━━━━━━━╸─ 57.6/63.4MB 75.4MB/s 1.4s<0.1s[KDownloading https://github.com/ultralytics/assets/releases/download/v8.4.0/rtdetr-l.pt to 'rtdetr-l.pt': 100% ━━━━━━━━━━━━ 63.4MB 42.0MB/s 1.5s
+6 images, 27 pseudo-GT boxes -> C:\Users\Aaron\Documents\CS249\det-track-a-kitti\tests\smoke_data (COCO json + KITTI folder)
+
+$ C:\Users\Aaron\Documents\CS249\det-track-a-kitti\.venv\Scripts\python.exe src/prepare_kitti.py --config tests/smoke_config.yaml
+KITTI labels:   0%|          | 0/6 [00:00<?, ?it/s]KITTI labels:  67%|██████▋   | 4/6 [00:00<00:00, 35.80it/s]KITTI labels: 100%|██████████| 6/6 [00:00<00:00, 42.19it/s]
+
+Wrote C:\Users\Aaron\Documents\CS249\det-track-a-kitti\tests\smoke_data\kitti_gt_moderate_all.json
+  images: 6   scored boxes: 18   ignore regions: 30
+    person: 18
+  stats: {'dropped_Misc': 9, 'ignore_DontCare': 6, 'ignore_class_Van': 6, 'scored_Pedestrian': 18}
+
+$ C:\Users\Aaron\Documents\CS249\det-track-a-kitti\.venv\Scripts\python.exe src/run_eval.py --config tests/smoke_config.yaml --dataset coco --model YOLO11l
+loading annotations into memory...
+Done (t=0.04s)
+creating index...
+index created!
+[KDownloading https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo11l.pt to 'yolo11l.pt': 0% ──────────── 100.4KB/49.0MB 260.0KB/s 0.1s<3:13[KDownloading https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo11l.pt to 'yolo11l.pt': 7% ╸─────────── 3.5/49.0MB 33.3MB/s 0.2s<1.4s[KDownloading https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo11l.pt to 'yolo11l.pt': 24% ━━╸───────── 12.3/49.0MB 86.8MB/s 0.3s<0.4s[KDownloading https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo11l.pt to 'yolo11l.pt': 39% ━━━━╸─────── 19.6/49.0MB 72.6MB/s 0.4s<0.4s[KDownloading https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo11l.pt to 'yolo11l.pt': 56% ━━━━━━╸───── 27.8/49.0MB 82.3MB/s 0.5s<0.3s[KDownloading https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo11l.pt to 'yolo11l.pt': 72% ━━━━━━━━╸─── 35.3/49.0MB 74.3MB/s 0.6s<0.2s[KDownloading https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo11l.pt to 'yolo11l.pt': 89% ━━━━━━━━━━╸─ 44.0/49.0MB 86.2MB/s 0.7s<0.1s[KDownloading https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo11l.pt to 'yolo11l.pt': 100% ━━━━━━━━━━━━ 49.0MB 62.3MB/s 0.8s
+YOLO11l on coco:   0%|          | 0/6 [00:00<?, ?it/s]YOLO11l on coco:  17%|█▋        | 1/6 [00:00<00:01,  3.47it/s]YOLO11l on coco:  33%|███▎      | 2/6 [00:00<00:01,  3.59it/s]YOLO11l on coco:  50%|█████     | 3/6 [00:00<00:00,  3.79it/s]YOLO11l on coco:  67%|██████▋   | 4/6 [00:01<00:00,  4.00it/s]YOLO11l on coco:  83%|████████▎ | 5/6 [00:01<00:00,  4.32it/s]YOLO11l on coco: 100%|██████████| 6/6 [00:01<00:00,  4.50it/s]YOLO11l on coco: 100%|██████████| 6/6 [00:01<00:00,  4.17it/s]
+== COCO, all 80 classes ==
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=0.04s).
+Accumulating evaluation results...
+DONE (t=0.02s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.972
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.978
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.974
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = -1.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = -1.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.982
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.611
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.994
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.994
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = -1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = -1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.994
+
+== COCO, 3 classes shared with KITTI ==
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=0.01s).
+Accumulating evaluation results...
+DONE (t=0.00s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 1.000
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 1.000
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 1.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = -1.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = -1.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.333
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = -1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = -1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 1.000
+
+
+Saved C:\Users\Aaron\Documents\CS249\det-track-a-kitti\tests\smoke_results\coco\YOLO11l/metrics.json
+latency total mean 232.50 ms  (4.3 FPS), peak GPU mem None MB
+
+$ C:\Users\Aaron\Documents\CS249\det-track-a-kitti\.venv\Scripts\python.exe src/run_eval.py --config tests/smoke_config.yaml --dataset coco --model RT-DETR-L
+loading annotations into memory...
+Done (t=0.00s)
+creating index...
+index created!
+RT-DETR-L on coco:   0%|          | 0/6 [00:00<?, ?it/s]RT-DETR-L on coco:  17%|█▋        | 1/6 [00:00<00:02,  2.09it/s]RT-DETR-L on coco:  33%|███▎      | 2/6 [00:00<00:01,  2.24it/s]RT-DETR-L on coco:  50%|█████     | 3/6 [00:01<00:01,  2.29it/s]RT-DETR-L on coco:  67%|██████▋   | 4/6 [00:01<00:00,  2.28it/s]RT-DETR-L on coco:  83%|████████▎ | 5/6 [00:02<00:00,  2.24it/s]RT-DETR-L on coco: 100%|██████████| 6/6 [00:02<00:00,  2.19it/s]RT-DETR-L on coco: 100%|██████████| 6/6 [00:02<00:00,  2.22it/s]
+== COCO, all 80 classes ==
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=0.06s).
+Accumulating evaluation results...
+DONE (t=0.04s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 1.000
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 1.000
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 1.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = -1.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = -1.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.611
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = -1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = -1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 1.000
+
+== COCO, 3 classes shared with KITTI ==
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=0.02s).
+Accumulating evaluation results...
+DONE (t=0.01s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 1.000
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 1.000
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 1.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = -1.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = -1.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.333
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = -1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = -1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 1.000
+
+
+Saved C:\Users\Aaron\Documents\CS249\det-track-a-kitti\tests\smoke_results\coco\RT-DETR-L/metrics.json
+latency total mean 442.58 ms  (2.3 FPS), peak GPU mem None MB
+
+$ C:\Users\Aaron\Documents\CS249\det-track-a-kitti\.venv\Scripts\python.exe src/run_eval.py --config tests/smoke_config.yaml --dataset coco --model RT-DETR-L-dec4
+loading annotations into memory...
+Done (t=0.00s)
+creating index...
+index created!
+RT-DETR-L-dec4 on coco:   0%|          | 0/6 [00:00<?, ?it/s]RT-DETR-L-dec4 on coco:  17%|█▋        | 1/6 [00:00<00:01,  2.54it/s]RT-DETR-L-dec4 on coco:  33%|███▎      | 2/6 [00:00<00:01,  2.57it/s]RT-DETR-L-dec4 on coco:  50%|█████     | 3/6 [00:01<00:01,  2.63it/s]RT-DETR-L-dec4 on coco:  67%|██████▋   | 4/6 [00:01<00:00,  2.69it/s]RT-DETR-L-dec4 on coco:  83%|████████▎ | 5/6 [00:01<00:00,  2.70it/s]RT-DETR-L-dec4 on coco: 100%|██████████| 6/6 [00:02<00:00,  2.72it/s]RT-DETR-L-dec4 on coco: 100%|██████████| 6/6 [00:02<00:00,  2.68it/s]
+== COCO, all 80 classes ==
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=0.05s).
+Accumulating evaluation results...
+DONE (t=0.03s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 1.000
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 1.000
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 1.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = -1.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = -1.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.611
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = -1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = -1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 1.000
+
+== COCO, 3 classes shared with KITTI ==
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=0.02s).
+Accumulating evaluation results...
+DONE (t=0.00s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 1.000
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 1.000
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 1.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = -1.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = -1.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.333
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = -1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = -1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 1.000
+
+
+Saved C:\Users\Aaron\Documents\CS249\det-track-a-kitti\tests\smoke_results\coco\RT-DETR-L-dec4/metrics.json
+latency total mean 365.86 ms  (2.7 FPS), peak GPU mem None MB
+
+$ C:\Users\Aaron\Documents\CS249\det-track-a-kitti\.venv\Scripts\python.exe src/run_eval.py --config tests/smoke_config.yaml --dataset kitti --model YOLO11l
+loading annotations into memory...
+Done (t=0.04s)
+creating index...
+index created!
+YOLO11l on kitti:   0%|          | 0/6 [00:00<?, ?it/s]YOLO11l on kitti:  17%|█▋        | 1/6 [00:00<00:01,  3.88it/s]YOLO11l on kitti:  33%|███▎      | 2/6 [00:00<00:01,  3.96it/s]YOLO11l on kitti:  50%|█████     | 3/6 [00:00<00:00,  3.92it/s]YOLO11l on kitti:  67%|██████▋   | 4/6 [00:01<00:00,  4.04it/s]YOLO11l on kitti:  83%|████████▎ | 5/6 [00:01<00:00,  4.09it/s]YOLO11l on kitti: 100%|██████████| 6/6 [00:01<00:00,  4.11it/s]YOLO11l on kitti: 100%|██████████| 6/6 [00:01<00:00,  4.05it/s]
+== KITTI (moderate), 3 shared classes ==
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=0.02s).
+Accumulating evaluation results...
+DONE (t=0.00s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 1.000
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 1.000
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 1.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = -1.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = -1.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.333
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = -1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = -1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 1.000
+
+
+Saved C:\Users\Aaron\Documents\CS249\det-track-a-kitti\tests\smoke_results\kitti\YOLO11l/metrics.json
+latency total mean 228.64 ms  (4.4 FPS), peak GPU mem None MB
+
+$ C:\Users\Aaron\Documents\CS249\det-track-a-kitti\.venv\Scripts\python.exe src/run_eval.py --config tests/smoke_config.yaml --dataset kitti --model RT-DETR-L
+loading annotations into memory...
+Done (t=0.00s)
+creating index...
+index created!
+RT-DETR-L on kitti:   0%|          | 0/6 [00:00<?, ?it/s]RT-DETR-L on kitti:  17%|█▋        | 1/6 [00:00<00:02,  2.32it/s]RT-DETR-L on kitti:  33%|███▎      | 2/6 [00:00<00:01,  2.24it/s]RT-DETR-L on kitti:  50%|█████     | 3/6 [00:01<00:01,  2.18it/s]RT-DETR-L on kitti:  67%|██████▋   | 4/6 [00:01<00:00,  2.14it/s]RT-DETR-L on kitti:  83%|████████▎ | 5/6 [00:02<00:00,  2.15it/s]RT-DETR-L on kitti: 100%|██████████| 6/6 [00:02<00:00,  2.19it/s]RT-DETR-L on kitti: 100%|██████████| 6/6 [00:02<00:00,  2.19it/s]
+== KITTI (moderate), 3 shared classes ==
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=0.03s).
+Accumulating evaluation results...
+DONE (t=0.00s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 1.000
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 1.000
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 1.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = -1.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = -1.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.333
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = -1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = -1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 1.000
+
+
+Saved C:\Users\Aaron\Documents\CS249\det-track-a-kitti\tests\smoke_results\kitti\RT-DETR-L/metrics.json
+latency total mean 437.96 ms  (2.3 FPS), peak GPU mem None MB
+
+$ C:\Users\Aaron\Documents\CS249\det-track-a-kitti\.venv\Scripts\python.exe src/run_eval.py --config tests/smoke_config.yaml --dataset kitti --model RT-DETR-L-dec4
+loading annotations into memory...
+Done (t=0.00s)
+creating index...
+index created!
+RT-DETR-L-dec4 on kitti:   0%|          | 0/6 [00:00<?, ?it/s]RT-DETR-L-dec4 on kitti:  17%|█▋        | 1/6 [00:00<00:01,  2.70it/s]RT-DETR-L-dec4 on kitti:  33%|███▎      | 2/6 [00:00<00:01,  2.72it/s]RT-DETR-L-dec4 on kitti:  50%|█████     | 3/6 [00:01<00:01,  2.69it/s]RT-DETR-L-dec4 on kitti:  67%|██████▋   | 4/6 [00:01<00:00,  2.58it/s]RT-DETR-L-dec4 on kitti:  83%|████████▎ | 5/6 [00:01<00:00,  2.54it/s]RT-DETR-L-dec4 on kitti: 100%|██████████| 6/6 [00:02<00:00,  2.49it/s]RT-DETR-L-dec4 on kitti: 100%|██████████| 6/6 [00:02<00:00,  2.56it/s]
+== KITTI (moderate), 3 shared classes ==
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=0.02s).
+Accumulating evaluation results...
+DONE (t=0.00s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 1.000
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 1.000
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 1.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = -1.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = -1.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.333
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = -1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = -1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 1.000
+
+
+Saved C:\Users\Aaron\Documents\CS249\det-track-a-kitti\tests\smoke_results\kitti\RT-DETR-L-dec4/metrics.json
+latency total mean 371.33 ms  (2.7 FPS), peak GPU mem None MB
+
+$ C:\Users\Aaron\Documents\CS249\det-track-a-kitti\.venv\Scripts\python.exe src/aggregate.py --config tests/smoke_config.yaml --report-dir tests/smoke_report
+         model       scope         AP       AP50       AP75   total_ms      fps gpu_mem_MB
+       YOLO11l    coco_all  97.174317  97.755776  97.449745 232.496483 4.301140       None
+     RT-DETR-L    coco_all 100.000000 100.000000 100.000000 442.584250 2.259457       None
+RT-DETR-L-dec4    coco_all 100.000000 100.000000 100.000000 365.857683 2.733303       None
+       YOLO11l coco_shared 100.000000 100.000000 100.000000 232.496483 4.301140       None
+     RT-DETR-L coco_shared 100.000000 100.000000 100.000000 442.584250 2.259457       None
+RT-DETR-L-dec4 coco_shared 100.000000 100.000000 100.000000 365.857683 2.733303       None
+       YOLO11l       kitti 100.000000 100.000000 100.000000 228.643950 4.373612       None
+     RT-DETR-L       kitti 100.000000 100.000000 100.000000 437.957633 2.283326       None
+RT-DETR-L-dec4       kitti 100.000000 100.000000 100.000000 371.328700 2.693032       None
+
+Tables -> C:\Users\Aaron\Documents\CS249\det-track-a-kitti\tests\smoke_report\tables
+Figures -> C:\Users\Aaron\Documents\CS249\det-track-a-kitti\tests\smoke_report\figures
+CSV -> C:\Users\Aaron\Documents\CS249\det-track-a-kitti\tests\smoke_results/summary.csv
+
+$ C:\Users\Aaron\Documents\CS249\det-track-a-kitti\.venv\Scripts\python.exe src/failure_analysis.py --config tests/smoke_config.yaml --dataset coco --report-dir tests/smoke_report --num-examples 2
+         model  gt  tp  ignored  localization  duplicate  confusion  background  miss_small  miss_medium  miss_large  recall@thr  precision@thr
+       YOLO11l  18  18        0             0          0          0           0           0            0           0         1.0            1.0
+     RT-DETR-L  18  18        0             0          0          0           0           0            0           0         1.0            1.0
+RT-DETR-L-dec4  18  18        0             0          0          0           0           0            0           0         1.0            1.0
+example 0: image 1 (smoke test) misses=0
+example 1: image 2 (smoke test) misses=0
+
+Figures -> C:\Users\Aaron\Documents\CS249\det-track-a-kitti\tests\smoke_report\figures\failures
+CSV -> C:\Users\Aaron\Documents\CS249\det-track-a-kitti\tests\smoke_results/failure_coco.csv
+
+$ C:\Users\Aaron\Documents\CS249\det-track-a-kitti\.venv\Scripts\python.exe src/failure_analysis.py --config tests/smoke_config.yaml --dataset kitti --report-dir tests/smoke_report --num-examples 2
+         model  gt  tp  ignored  localization  duplicate  confusion  background  miss_small  miss_medium  miss_large  recall@thr  precision@thr
+       YOLO11l  18  18        0             0          0          0           0           0            0           0         1.0            1.0
+     RT-DETR-L  18  18        0             0          0          0           0           0            0           0         1.0            1.0
+RT-DETR-L-dec4  18  18        0             0          0          0           0           0            0           0         1.0            1.0
+example 0: image 1 (training/image_2/000001.png) misses=0
+example 1: image 2 (training/image_2/000002.png) misses=0
+
+Figures -> C:\Users\Aaron\Documents\CS249\det-track-a-kitti\tests\smoke_report\figures\failures
+CSV -> C:\Users\Aaron\Documents\CS249\det-track-a-kitti\tests\smoke_results/failure_kitti.csv
+
+== done. Full log: logs/run_20261031-192920.log

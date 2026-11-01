@@ -1,0 +1,14 @@
+.venv/
+data/
+weights/
+__pycache__/
+.pytest_cache/
+*.pyc
+submission_artifacts.zip
+results_limit50/
+tests/smoke_results/
+tests/smoke_report/
+LAPTOP_RUNBOOK.md
+*.json
+report/
+*.pt

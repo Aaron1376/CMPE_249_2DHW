@@ -1,0 +1,37 @@
+# Config used only by `python run_all_local.py --smoke` (synthetic data, a few seconds of GPU or ~2 min CPU).
+paths:
+  data_root: tests/smoke_data
+  coco_images: tests/smoke_data/images
+  coco_ann: tests/smoke_data/coco_gt.json
+  kitti_root: tests/smoke_data/kitti
+  kitti_gt: tests/smoke_data/kitti_gt_{difficulty}_{n}.json
+  results: tests/smoke_results
+
+kitti:
+  difficulty: moderate
+  ignore_regions: true
+  min_det_height: true
+  max_images: null
+
+models:
+  - name: YOLO11l
+    weights: yolo11l.pt
+    family: CNN one-stage (NMS)
+  - name: RT-DETR-L
+    weights: rtdetr-l.pt
+    family: Transformer (NMS-free)
+  - name: RT-DETR-L-dec4
+    weights: rtdetr-l.pt
+    family: Transformer (NMS-free)
+    rtdetr_eval_idx: 3
+
+inference:
+  imgsz: 640
+  conf: 0.001
+  iou: 0.7
+  max_det: 300
+  half: false
+  device: cpu
+  warmup: 2
+
+shared_coco_cat_ids: [1, 3, 8]

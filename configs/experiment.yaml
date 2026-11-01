@@ -1,0 +1,50 @@
+# Single source of truth for every run. Change paths here, not in the scripts.
+# All paths may be absolute or relative to the repo root.
+
+paths:
+  data_root: data                 # parent folder for datasets
+  coco_images: data/coco/val2017
+  coco_ann: data/coco/annotations/instances_val2017.json
+  kitti_root: data/kitti          # contains training/image_2/*.png and training/label_2/*.txt
+  kitti_gt: data/kitti_coco/kitti_train_{difficulty}_{n}_gt.json
+  results: results                # one sub-folder per (dataset, model)
+
+kitti:
+  # All 7,481 labeled KITTI training images are used for evaluation. Valid: no model is trained here.
+  difficulty: moderate            # KITTI's main ranking level; easy / moderate / hard are all reported anyway
+  ignore_regions: true            # Van, Cyclist, Person_sitting, DontCare and too-hard boxes become
+                                  # iscrowd=1 "don't care" regions (detections on them are not penalized)
+  min_det_height: true            # like the KITTI server, drop detections shorter than the level's min height
+                                  # (25 px moderate/hard, 40 px easy) before scoring
+  max_images: null                # e.g. 2000 for a faster run (first N images by id); null = all 7,481
+
+# Models evaluated (3 configs, 2 families). Uncomment the optional ones if time allows.
+models:
+  - name: YOLO11l
+    weights: yolo11l.pt
+    family: CNN one-stage (NMS)
+  - name: YOLO11x
+    weights: yolo11x.pt
+    family: CNN one-stage (NMS)
+  - name: RT-DETR-L
+    weights: rtdetr-l.pt
+    family: Transformer (NMS-free)
+  # - name: RT-DETR-X
+  #   weights: rtdetr-x.pt
+  #   family: Transformer (NMS-free)
+  # - name: RT-DETR-L-dec4          # same weights, 4 of 6 decoder layers (no retraining)
+  #   weights: rtdetr-l.pt
+  #   family: Transformer (NMS-free)
+  #   rtdetr_eval_idx: 3
+
+inference:
+  imgsz: 640
+  conf: 0.001          # low threshold so the full PR curve is measured (standard for mAP)
+  iou: 0.7             # NMS IoU for YOLO; ignored by RT-DETR (no NMS)
+  max_det: 300
+  half: false          # FP32 for all models; set true for FP16 (then for ALL models)
+  device: 0
+  warmup: 20           # images run before timing starts
+
+# Classes shared by COCO and KITTI (COCO json category ids)
+shared_coco_cat_ids: [1, 3, 8]   # person (KITTI Pedestrian), car (Car), truck (Truck)
